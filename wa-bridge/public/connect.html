@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WhatsApp demo connect</title>
+<style>body{font-family:system-ui;background:#0e1a24;color:#e8f1f8;text-align:center;padding:24px}img{width:260px;height:260px;background:#fff;padding:8px;border-radius:12px}button{font-size:1rem;padding:10px 18px;border-radius:8px;border:0;background:#35c27a;color:#06210f;cursor:pointer}a{color:#5cc8ff}</style></head>
+<body><h1>WhatsApp Bot Demo</h1>
+<p>WhatsApp → Settings → Linked devices → Link a device → QR scan karo.</p>
+<p><button id="go">Start demo (QR dikhao)</button></p>
+<div id="o"></div><p><a href="/" target="_blank">Smart Home page kholo (isko open rakho, band karoge to bot band)</a></p>
+<script>
+const o=document.getElementById('o');let t;
+document.getElementById('go').onclick=async()=>{await fetch('/start',{method:'POST'});clearInterval(t);t=setInterval(poll,1500);poll();};
+async function poll(){const s=await (await fetch('/status')).json();
+ if(s.status==='waiting_qr')o.innerHTML=s.qr?`<img src="${s.qr}" alt="QR">`:'QR bann raha hai...';
+ else if(s.status==='active'){const m=Math.floor(s.secondsLeft/60),x=String(s.secondsLeft%60).padStart(2,'0');o.innerHTML=`<h2>✅ Bot active</h2><p>Bacha hua time: ${m}:${x}</p><p>Ab apne WhatsApp se "light on" jaisa msg bhejo.</p>`;}
+ else{o.innerHTML=`<p>Session khatam (${s.status}). Dobara start karo.</p>`;clearInterval(t);}}
+</script></body></html>

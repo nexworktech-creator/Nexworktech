@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Explore Live Demos | Nexwork Tech</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050A18;--bg2:#0A1330;--ink:#E6ECFF;--mute:#8E9BC4;--blue:#2F6BFF;--cyan:#22E3FF;--violet:#9B6BFF;--line:rgba(120,160,255,.18);--glass:rgba(16,28,62,.55);color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:radial-gradient(50rem 26rem at 90% 0,rgba(47,107,255,.2),transparent 60%),var(--bg);color:var(--ink);font:400 1rem/1.6 "IBM Plex Sans",system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:Sora,system-ui,sans-serif;line-height:1.15;margin:0}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1040px,100% - 2.5rem);margin:0 auto;padding:2.5rem 0 4rem}
+h1{font-size:clamp(2rem,4.6vw,3rem);font-weight:800;margin-bottom:.6rem}
+.lead{color:var(--mute);max-width:40rem;margin:0 0 1.5rem}
+.tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+.tab,.btn{font:500 .95rem "IBM Plex Sans",sans-serif;color:var(--ink);background:var(--glass);border:1px solid var(--line);border-radius:10px;padding:.6rem 1rem;cursor:pointer;text-decoration:none;display:inline-block}
+.tab[aria-selected=true]{border-color:var(--cyan);background:rgba(34,227,255,.12)}
+.btn.p{background:linear-gradient(120deg,var(--blue),var(--violet));border-color:transparent;color:#fff}
+.panel{background:var(--glass);border:1px solid var(--line);border-radius:18px;padding:1.4rem;backdrop-filter:blur(10px)}
+.status{display:inline-flex;gap:.5rem;align-items:center;padding:.3rem .8rem;border:1px solid var(--violet);border-radius:999px;color:#cdb8ff;font-size:.85rem;margin-bottom:.8rem}
+.status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--violet)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+@media(max-width:800px){.cols{grid-template-columns:1fr}}
+.row{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--line)}
+.val{font:700 1.4rem Sora,sans-serif}
+.sw{width:54px;height:30px;border-radius:999px;border:1px solid var(--line);background:#0b1636;position:relative;cursor:pointer;padding:0}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:var(--mute);transition:transform .25s,background .25s}
+.sw[aria-checked=true]{background:rgba(34,227,255,.2);border-color:var(--cyan)}.sw[aria-checked=true]::after{transform:translateX(24px);background:var(--cyan)}
+input[type=range]{width:140px;accent-color:var(--cyan)}
+input[type=text],select,textarea{font:inherit;color:var(--ink);background:#0b1636;border:1px solid var(--line);border-radius:8px;padding:.6rem .8rem;width:100%}
+label{display:block;font-size:.9rem;color:var(--mute);margin:.7rem 0 .25rem}
+.chart{width:100%;height:auto;display:block;margin-top:.5rem}
+.chart .ax{stroke:var(--line)}.chart .ln{fill:none;stroke:var(--cyan);stroke-width:2}.chart .bar{fill:var(--violet)}.chart text{fill:var(--mute);font-size:10px}
+.dev{display:flex;justify-content:space-between;font-size:.9rem;color:var(--mute);padding:.2rem 0}
+.on{color:#7dffb0}.off{color:#ff9aa8}
+.log,.chat{background:#070f26;border:1px solid var(--line);border-radius:10px;padding:.8rem;min-height:150px;max-height:260px;overflow:auto;font-size:.92rem}
+.log p,.chat p{margin:.25rem 0}.me{text-align:right;color:var(--cyan)}.bot{color:var(--ink)}
+.cta{margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:.8rem;align-items:center;color:var(--mute);font-size:.9rem}
+.soon{margin-top:2rem;color:var(--mute)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Explore Live Demos</h1>
+  <p class="lead">Try these without an account. Every demo here runs in your browser on generated sample data. None of them is connected to real hardware or an outside service.</p>
+  <div class="tabs" role="tablist" aria-label="Demos" id="tabs"></div>
+  <div class="panel" id="panel" role="tabpanel" tabindex="0"></div>
+  <p class="soon">Planned for later: Arduino and ESP32 Web Lab, WhatsApp Chatbot Builder, Instagram Automation, GPS Tracker, Cloud Hosting Dashboard, Custom SaaS Builder.</p>
+</div>
+<script>
+var CONTACT='https://claude.ai/artifact/XAp8N1y36TVYGwrysCZipb#/contact?service=';
+var timers=[];function every(f,ms){timers.push(setInterval(f,ms))}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function $(i){return document.getElementById(i)}
+function cta(svc){return '<div class="cta"><a class="btn p" target="_blank" rel="noopener" href="'+CONTACT+svc+'">Request this solution</a><span>Opens the inquiry form with this service selected.</span></div>'}
+var D=[
+{id:'home',n:'Smart Home',svc:'iot',run:function(p){
+ p.innerHTML='<span class="status" role="status">Simulation mode: no hardware connected</span><div class="cols"><div>'+
+ '<div class="row"><span>Lights</span><button class="sw" id="li" role="switch" aria-checked="false" aria-label="Lights"></button></div>'+
+ '<div class="row"><label for="fa" style="margin:0">Fan: <span id="fv">Off</span></label><input id="fa" type="range" min="0" max="3" value="0"></div>'+
+ '<div class="row"><span>Room temperature</span><span class="val" id="tp">27.0 °C</span></div>'+
+ '<div class="row"><span>Motion</span><button class="tab" id="mo">Simulate motion</button></div><div class="row"><span>Door</span><button class="sw" id="dr" role="switch" aria-checked="false" aria-label="Door open"></button></div>'+
+ '<div id="al" role="status" style="min-height:1.5em;color:#ffd27d"></div></div><div><strong>Energy use, last 8 readings (sample watts)</strong><svg class="chart" id="ch" viewBox="0 0 320 140"></svg><div id="dv"></div></div></div>'+cta('iot');
+ var e=[],t=27,fn=['Off','Low','Medium','High'],mt=0;
+ function tg(b){b.setAttribute('aria-checked',b.getAttribute('aria-checked')!=='true')}
+ function up(){var l=$('li').getAttribute('aria-checked')==='true',f=+$('fa').value,d=$('dr').getAttribute('aria-checked')==='true';
+  $('fv').textContent=fn[f];$('tp').textContent=t.toFixed(1)+' °C';
+  var w=(l?12:0)+f*18+Math.round(Math.random()*3);e.push(w);if(e.length>8)e.shift();
+  $('ch').innerHTML='<line class="ax" x1="10" y1="120" x2="310" y2="120"/>'+e.map(function(v,i){var h=v*1.4;return '<rect class="bar" x="'+(18+i*37)+'" y="'+(120-h)+'" width="26" height="'+h+'" rx="4"/><text x="'+(31+i*37)+'" y="134" text-anchor="middle">'+v+'</text>'}).join('');
+  var dv=[['Light relay',l],['Fan controller',f>0],['Motion sensor',true],['Door sensor',true]];
+  $('dv').innerHTML=dv.map(function(x){return '<div class="dev"><span>'+x[0]+'</span><span class="'+(x[1]?'on':'off')+'">'+(x[1]?'active':'idle')+'</span></div>'}).join('');
+  $('al').textContent=(Date.now()<mt?'Motion detected (simulated)':'')+(d?' Door open (simulated)':'')}
+ $('li').onclick=function(){tg(this);up()};$('dr').onclick=function(){tg(this);up()};$('fa').oninput=up;$('mo').onclick=function(){mt=Date.now()+4000;up()};
+ every(function(){t+=(27-$('fa').value*1.2-t)*.15+(Math.random()-.5)*.1;up()},1500);up()}},
+{id:'sensors',n:'IoT Sensor Dashboard',svc:'iot',run:function(p){
+ p.innerHTML='<span class="status" role="status">Simulation mode: generated telemetry</span><div class="cols"><div id="sv"></div><div><strong>Temperature, last 20 readings</strong><svg class="chart" id="sc" viewBox="0 0 320 140"></svg></div></div>'+cta('iot');
+ var h=[],s={temp:28,hum:55,aq:42,dist:120};
+ function up(){s.temp+=(Math.random()-.5)*.6;s.hum+=(Math.random()-.5)*1.2;s.aq=Math.max(5,s.aq+(Math.random()-.5)*6);s.dist=Math.max(5,s.dist+(Math.random()-.5)*20);
+  h.push(s.temp);if(h.length>20)h.shift();var mn=Math.min.apply(0,h)-1,mx=Math.max.apply(0,h)+1;
+  $('sc').innerHTML='<line class="ax" x1="10" y1="120" x2="310" y2="120"/><polyline class="ln" points="'+h.map(function(v,i){return (10+i*(300/19))+','+(120-(v-mn)/(mx-mn)*100)}).join(' ')+'"/><text x="10" y="134">'+mn.toFixed(1)+' °C</text><text x="310" y="134" text-anchor="end">'+mx.toFixed(1)+' °C</text>';
+  var m=Math.random()>.8,ts=new Date().toLocaleTimeString();
+  $('sv').innerHTML=[['Temperature',s.temp.toFixed(1)+' °C'],['Humidity',s.hum.toFixed(0)+' %'],['Air quality index',s.aq.toFixed(0)],['Distance',s.dist.toFixed(0)+' cm'],['Motion',m?'Detected':'None']].map(function(x){return '<div class="row"><span>'+x[0]+'</span><span class="val">'+x[1]+'</span></div>'}).join('')+'<div class="dev"><span>Device: sample-node-01</span><span class="on">online (simulated)</span></div><div class="dev"><span>Last update</span><span>'+ts+'</span></div>'}
+ every(up,1500);up()}},
+{id:'flow',n:'Automation Builder',svc:'ai-automation',run:function(p){
+ p.innerHTML='<span class="status" role="status">Simulation mode: no emails or CRM changes are made</span><div class="cols"><div>'+
+ '<label for="tr">Trigger</label><select id="tr"><option>New lead</option><option>Form submission</option><option>Schedule trigger</option><option>Webhook event</option></select>'+
+ '<label for="bd">Condition: budget is at least</label><input type="text" id="bd" value="50000" inputmode="numeric"><label for="lb">Sample lead budget</label><input type="text" id="lb" value="80000" inputmode="numeric">'+
+ '<label for="ac">If true</label><select id="ac"><option>Email notification</option><option>CRM update</option><option>AI text generation</option><option>Approval step</option></select>'+
+ '<label for="ae">If false</label><select id="ae"><option>CRM update</option><option>Email notification</option></select><p><button class="btn p" id="rn">Run workflow</button></p></div>'+
+ '<div><strong>Execution log</strong><div class="log" id="lg" role="log" aria-live="polite"><p>Nothing run yet.</p></div></div></div>'+cta('ai-automation');
+ $('rn').onclick=function(){var b=+$('bd').value,l=+$('lb').value;if(isNaN(b)||isNaN(l)){$('lg').innerHTML='<p>Enter numbers for both budget fields.</p>';return}
+  var ok=l>=b,a=ok?$('ac').value:$('ae').value,st=['Trigger: '+$('tr').value+' received (sample data)','Condition: '+l+' &ge; '+b+' is '+ok,'Action: '+a+' (simulated, nothing sent)','Result: workflow completed in test mode'],i=0;
+  $('lg').innerHTML='';(function n(){if(i<st.length){$('lg').insertAdjacentHTML('beforeend','<p>'+(i+1)+'. '+st[i]+'</p>');i++;setTimeout(n,450)}})()}}},
+{id:'bot',n:'Website Chatbot',svc:'chatbots',run:function(p){
+ p.innerHTML='<span class="status" role="status">Simulation mode: keyword matching, not a live AI model</span><div class="cols"><div>'+
+ '<label for="bn">Business name</label><input type="text" id="bn" value="Sample Cafe"><label for="gr">Greeting</label><input type="text" id="gr" value="Hi! Ask me about timings or prices.">'+
+ '<label for="fq">FAQs (one per line, question | answer)</label><textarea id="fq" rows="5">What are your timings? | We are open 9am to 9pm daily.\nDo you deliver? | Yes, within 5 km.\nWhat is the price of coffee? | Coffee starts at 120.</textarea></div>'+
+ '<div><strong id="ct"></strong><div class="chat" id="cb" role="log" aria-live="polite"></div><label for="mi">Your message</label><input type="text" id="mi"><p><button class="btn p" id="sd">Send</button></p></div></div>'+cta('chatbots');
+ function add(c,t){$('cb').insertAdjacentHTML('beforeend','<p class="'+c+'">'+esc(t)+'</p>');$('cb').scrollTop=1e5}
+ function reset(){$('ct').textContent=$('bn').value+' (preview)';$('cb').innerHTML='';add('bot',$('gr').value)}
+ function w(s){return s.toLowerCase().match(/[a-z0-9]{3,}/g)||[]}
+ function send(){var m=$('mi').value.trim();if(!m)return;add('me',m);$('mi').value='';var mw=w(m),best=null,bs=0;
+  $('fq').value.split('\n').forEach(function(l){var x=l.split('|');if(x.length<2)return;var sc=w(x[0]).filter(function(k){return mw.indexOf(k)>-1}).length;if(sc>bs){bs=sc;best=x.slice(1).join('|').trim()}});
+  add('bot',best||'I do not have an answer for that yet. Leave your phone number and the team will reply.')}
+ $('sd').onclick=send;$('mi').onkeydown=function(e){if(e.key==='Enter')send()};['bn','gr'].forEach(function(i){$(i).oninput=reset});reset()}}
+];
+var cur=0;
+function show(i){cur=i;timers.forEach(clearInterval);timers=[];
+ [].forEach.call($('tabs').children,function(b,j){b.setAttribute('aria-selected',j===i)});D[i].run($('panel'))}
+D.forEach(function(d,i){var b=document.createElement('button');b.className='tab';b.role='tab';b.textContent=d.n;b.onclick=function(){show(i)};$('tabs').appendChild(b)});
+show(0);
+</script>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Nexwork Tech | Connect Ideas. Build Intelligence. Automate the Future.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Nexwork Tech builds IoT systems, custom software, AI chatbots, cloud hosting and automation.">
+<meta property="og:title" content="Nexwork Tech">
+<meta property="og:description" content="Connect Ideas. Build Intelligence. Automate the Future.">
+<script>try{if(localStorage.getItem('nx_intro')||matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('skip')}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050A18;--bg2:#0A1330;--ink:#E6ECFF;--mute:#8E9BC4;--blue:#2F6BFF;--cyan:#22E3FF;--violet:#9B6BFF;--line:rgba(120,160,255,.18);--glass:rgba(16,28,62,.55);color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 "IBM Plex Sans",system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:Sora,system-ui,sans-serif;line-height:1.12;margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1120px,100% - 2.5rem);margin-inline:auto}
+
+/* ---------- intro ---------- */
+.intro{position:fixed;inset:0;z-index:100;background:#02040A;display:grid;place-items:center;transition:opacity .9s ease}
+.intro.done{opacity:0;pointer-events:none}
+.skip .intro{display:none}
+.intro canvas,.intro svg.circ{position:absolute;inset:0;width:100%;height:100%}
+.circ path{fill:none;stroke:var(--cyan);stroke-width:1;opacity:.25;stroke-dasharray:600;stroke-dashoffset:600;animation:draw 2.6s .2s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.logo{position:relative;display:grid;grid-template-columns:auto auto;font:800 clamp(2.6rem,12vw,7.2rem)/1 Sora,sans-serif;letter-spacing:.05em}
+.w{background:linear-gradient(100deg,var(--c) 42%,#d8feff 50%,var(--c) 58%) 100% 0/250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;opacity:0;animation:win .9s .4s cubic-bezier(.2,.8,.2,1) forwards,sweep 1.5s 2.5s ease forwards}
+.nex{--c:#22E3FF;transform:translateX(-36px)}
+.work{--c:#F2F6FF;transform:translateX(36px)}
+@keyframes win{to{opacity:1;transform:none}}
+@keyframes sweep{from{background-position:100% 0}to{background-position:0 0}}
+.techwrap{grid-column:2;justify-self:end;overflow:hidden;padding-top:.18em}
+.tech{display:block;font-size:.3em;letter-spacing:.9em;margin-right:-.9em;color:var(--violet);transform:translateY(120%);animation:rise .9s 1.9s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes rise{to{transform:none}}
+.skipbtn{position:absolute;top:calc(env(safe-area-inset-top,0px) + 1rem);right:1rem;background:transparent;border:1px solid var(--line);color:var(--ink);padding:.5rem 1rem;border-radius:999px;font:inherit;cursor:pointer}
+.skipbtn:hover{border-color:var(--cyan)}
+
+/* ---------- header ---------- */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;backdrop-filter:blur(14px);background:rgba(5,10,24,.72);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font:800 1.15rem Sora,sans-serif;text-decoration:none;letter-spacing:.06em}
+.brand b{color:var(--cyan)}.brand i{font-style:normal;color:var(--violet);font-size:.7em;margin-left:.35em;letter-spacing:.3em}
+nav ul{display:flex;gap:1.6rem;list-style:none;margin:0;padding:0}
+nav a{text-decoration:none;color:var(--mute)}nav a:hover{color:var(--ink)}
+.burger{display:none;background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:.45rem .7rem;font:inherit;cursor:pointer}
+@media(max-width:760px){.burger{display:block}nav{position:absolute;top:64px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--line);display:none}nav.open{display:block}nav ul{flex-direction:column;gap:0;padding:.5rem 1.25rem 1rem}nav li a{display:block;padding:.7rem 0}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:4.5rem 0 4rem;background:radial-gradient(60rem 30rem at 85% 0,rgba(47,107,255,.22),transparent 60%),radial-gradient(40rem 26rem at 0 40%,rgba(155,107,255,.14),transparent 60%)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:2.5rem;align-items:center}
+.hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800}
+.hero p.sub{color:var(--mute);max-width:34rem;margin:1.2rem 0 2rem;font-size:1.08rem}
+.btns{display:flex;flex-wrap:wrap;gap:.8rem}
+.btn{display:inline-block;text-decoration:none;padding:.8rem 1.3rem;border-radius:10px;font-weight:500;border:1px solid var(--line);background:var(--glass);transition:border-color .2s,transform .2s}
+.btn:hover{border-color:var(--cyan)}
+.btn.p{background:linear-gradient(120deg,var(--blue),var(--violet));border-color:transparent;color:#fff}
+.tag{margin-top:1.6rem;color:var(--cyan);font-family:Sora,sans-serif;font-size:.95rem}
+.net{width:100%;height:auto}
+.net .ln{stroke:var(--cyan);stroke-width:1.4;stroke-dasharray:5 7;opacity:.6;animation:flow 1.6s linear infinite}
+.net .nd rect{fill:rgba(16,28,62,.85);stroke:var(--line)}
+.net .nd text{fill:var(--ink);font:500 13px "IBM Plex Sans",sans-serif;text-anchor:middle}
+.net .hub{fill:url(#hg)}
+@keyframes flow{to{stroke-dashoffset:-24}}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}}
+
+/* ---------- sections ---------- */
+section{padding:4.5rem 0}
+.sec h2{font-size:clamp(1.7rem,3.4vw,2.4rem);margin-bottom:.7rem}
+.lead{color:var(--mute);max-width:40rem;margin:0 0 2.2rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.card{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:1.3rem;backdrop-filter:blur(10px)}
+.card h3{font-size:1.05rem;margin-bottom:.4rem}
+.card p{margin:0;color:var(--mute);font-size:.94rem}
+.card.big{border-radius:20px}
+
+/* ---------- live demo ---------- */
+.demo{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start}
+@media(max-width:860px){.demo{grid-template-columns:1fr}}
+.status{display:inline-flex;gap:.5rem;align-items:center;padding:.3rem .8rem;border:1px solid var(--violet);border-radius:999px;color:#cdb8ff;font-size:.85rem}
+.status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--violet)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--line)}
+.row:last-of-type{border-bottom:0}
+.sw{width:54px;height:30px;border-radius:999px;border:1px solid var(--line);background:#0b1636;position:relative;cursor:pointer;padding:0}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:var(--mute);transition:transform .25s,background .25s}
+.sw[aria-checked=true]{background:rgba(34,227,255,.2);border-color:var(--cyan)}
+.sw[aria-checked=true]::after{transform:translateX(24px);background:var(--cyan)}
+input[type=range]{width:150px;accent-color:var(--cyan)}
+.val{font:700 1.5rem Sora,sans-serif}
+.room{height:120px;border-radius:12px;margin-top:1rem;border:1px solid var(--line);display:grid;place-items:center;background:#0a1330;transition:background .4s,box-shadow .4s;color:var(--mute)}
+.room.lit{background:radial-gradient(circle at 50% 30%,rgba(255,226,140,.35),#0a1330 70%);color:var(--ink);box-shadow:inset 0 0 40px rgba(255,226,140,.12)}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+.chips span{border:1px solid var(--line);border-radius:999px;padding:.25rem .8rem;font-size:.88rem;color:var(--mute)}
+
+/* ---------- cta + footer ---------- */
+.cta{border:1px solid var(--line);border-radius:22px;padding:2.5rem;background:linear-gradient(130deg,rgba(47,107,255,.2),rgba(155,107,255,.16))}
+.note{color:var(--mute);font-size:.9rem;margin-top:1rem}
+footer{border-top:1px solid var(--line);padding:2.5rem 0;color:var(--mute);font-size:.92rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:space-between}
+footer button{background:none;border:0;color:var(--cyan);font:inherit;cursor:pointer;padding:0;text-decoration:underline}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div class="intro" id="intro" role="dialog" aria-label="Nexwork Tech intro animation">
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <svg class="circ" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path d="M0 90H160L200 130H360"/><path d="M800 70H640L600 110H470"/><path d="M0 360H120L170 310H330"/><path d="M800 380H680L630 330H480"/><path d="M400 0V60M400 450V390"/>
+  </svg>
+  <div class="logo" aria-label="Nexwork Tech">
+    <span class="w nex">NEX</span><span class="w work">WORK</span>
+    <span class="techwrap"><span class="tech">TECH</span></span>
+  </div>
+  <button class="skipbtn" id="skip" type="button">Skip intro</button>
+</div>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="Nexwork Tech home"><b>NEX</b>WORK<i>TECH</i></a>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+    <nav id="menu" aria-label="Main">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#demos">Live demos</a></li>
+        <li><a href="#build">Build your solution</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Technology That Connects. Intelligence That Automates.</h1>
+        <p class="sub">From IoT devices and custom software to AI chatbots, cloud infrastructure, and intelligent automation — Nexwork Tech builds solutions for the next generation.</p>
+        <div class="btns">
+          <a class="btn p" href="#demos">Explore Live Demos</a>
+          <a class="btn" href="#build">Build Your Solution</a>
+          <a class="btn" href="#services">Explore Our Services</a>
+        </div>
+        <p class="tag">Connect Ideas. Build Intelligence. Automate the Future.</p>
+      </div>
+      <svg class="net" viewBox="0 0 520 420" role="img" aria-label="Diagram: sensors, ESP32 boards, a robot, a dashboard, a chatbot and workflows all connected to the Nexwork cloud">
+        <defs><radialGradient id="hg"><stop offset="0" stop-color="#22E3FF"/><stop offset="1" stop-color="#2F6BFF"/></radialGradient></defs>
+        <g><line class="ln" x1="260" y1="210" x2="90" y2="80"/><line class="ln" x1="260" y1="210" x2="90" y2="340"/><line class="ln" x1="260" y1="210" x2="430" y2="80"/><line class="ln" x1="260" y1="210" x2="430" y2="340"/><line class="ln" x1="260" y1="210" x2="260" y2="40"/><line class="ln" x1="260" y1="210" x2="260" y2="380"/></g>
+        <circle class="hub" cx="260" cy="210" r="46"/><text x="260" y="215" text-anchor="middle" fill="#021022" font-family="Sora,sans-serif" font-weight="700" font-size="14">Cloud</text>
+        <g class="nd"><rect x="40" y="62" width="100" height="36" rx="10"/><text x="90" y="85">Sensors</text></g>
+        <g class="nd"><rect x="40" y="322" width="100" height="36" rx="10"/><text x="90" y="345">ESP32</text></g>
+        <g class="nd"><rect x="380" y="62" width="100" height="36" rx="10"/><text x="430" y="85">Dashboard</text></g>
+        <g class="nd"><rect x="380" y="322" width="100" height="36" rx="10"/><text x="430" y="345">Robotics</text></g>
+        <g class="nd"><rect x="210" y="22" width="100" height="36" rx="10"/><text x="260" y="45">Chatbot</text></g>
+        <g class="nd"><rect x="210" y="362" width="100" height="36" rx="10"/><text x="260" y="385">Workflows</text></g>
+      </svg>
+    </div>
+  </div>
+
+  <section class="sec" id="services">
+    <div class="wrap">
+      <h2>What we build</h2>
+      <p class="lead">Eight service areas, from a first website to a connected device fleet. Each will get its own page, demo and inquiry button.</p>
+      <div class="grid">
+        <div class="card"><h3>Website development</h3><p>Business sites, e-commerce, portfolios, landing pages and admin dashboards.</p></div>
+        <div class="card"><h3>Web applications</h3><p>SaaS platforms, CRM, attendance, inventory and school management systems.</p></div>
+        <div class="card"><h3>IoT solutions</h3><p>Smart home, agriculture, industrial and energy monitoring, GPS tracking.</p></div>
+        <div class="card"><h3>AI and business automation</h3><p>Support assistants, lead handling, email and workflow automation.</p></div>
+        <div class="card"><h3>Chatbot development</h3><p>WhatsApp, Instagram and website bots for FAQs and lead collection.</p></div>
+        <div class="card"><h3>Cloud and hosting</h3><p>Hosting, deployment help, monitoring, backups and uptime checks.</p></div>
+        <div class="card"><h3>Robotics and Arduino</h3><p>Arduino and ESP32 projects, sensor integration and remote control.</p></div>
+        <div class="card"><h3>Student training</h3><p>Practical IoT, Arduino, ESP32 and web courses with verifiable certificates.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="demos" style="background:linear-gradient(var(--bg),var(--bg2))">
+    <div class="wrap">
+      <h2>Try it before you ask</h2>
+      <p class="lead">No account needed. This is a small preview of the Smart Home demo; the full Live Demo Center with ten demos arrives in Stage 3.</p>
+      <div class="demo">
+        <div class="card big">
+          <span class="status" role="status">Simulation mode: no hardware connected</span>
+          <div class="row"><span>Living room light</span><button class="sw" id="light" role="switch" aria-checked="false" aria-label="Living room light"></button></div>
+          <div class="row"><label for="fan">Fan speed: <span id="fanv">Off</span></label><input id="fan" type="range" min="0" max="3" value="0"></div>
+          <div class="row"><span>Room temperature</span><span class="val" id="temp">27.0 °C</span></div>
+          <div class="row"><span>Power draw (sample)</span><span class="val" id="pw">0 W</span></div>
+          <div class="room" id="room">Light is off</div>
+        </div>
+        <div>
+          <h3 style="font-size:1.3rem">What this demo shows</h3>
+          <p class="lead" style="margin-top:.7rem">Switches and sliders drive generated values, the same layout a real device dashboard uses. When a real ESP32 or Arduino is linked through a gateway or MQTT broker, the status above changes to “Hardware connected”.</p>
+          <div class="chips"><span>Smart home</span><span>IoT sensors</span><span>Arduino and ESP32 lab</span><span>Automation builder</span><span>WhatsApp bot</span><span>Website bot</span><span>Instagram</span><span>GPS tracker</span><span>Cloud dashboard</span><span>SaaS builder</span></div>
+          <p class="note">Listed demos are planned. They are not live yet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="build">
+    <div class="wrap">
+      <div class="cta">
+        <h2>Tell us what to connect</h2>
+        <p class="lead" style="margin-bottom:1.4rem">The solution wizard walks you through category, features, delivery type and integrations, then produces a project specification for a quotation.</p>
+        <a class="btn p" href="#contact">Build Your Solution</a>
+        <p class="note">The wizard and inquiry form need the database from Stage 4. Nothing can be submitted from this page yet.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div><strong>Nexwork Tech</strong><br>Connect Ideas. Build Intelligence. Automate the Future.</div>
+    <div>Phone, email and social links: to be added by the admin.<br>No customer logos, ratings or statistics are shown until real data exists.</div>
+    <div><button type="button" id="replay">Replay intro</button></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var intro=document.getElementById('intro'),skip=document.getElementById('skip'),over=false,raf;
+  function end(){
+    if(over)return;over=true;cancelAnimationFrame(raf);
+    try{localStorage.setItem('nx_intro','1')}catch(e){}
+    intro.classList.add('done');
+    setTimeout(function(){intro.style.display='none'},950);
+  }
+  if(!document.documentElement.classList.contains('skip')){
+    skip.focus();
+    skip.addEventListener('click',end);
+    setTimeout(end,5200);
+    var c=document.getElementById('fx'),x=c.getContext('2d'),P=[],W,H;
+    function size(){W=c.width=innerWidth;H=c.height=innerHeight}
+    size();addEventListener('resize',size);
+    for(var i=0;i<70;i++)P.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.6+.4,v:Math.random()*.5+.15,h:Math.random()>.5?'34,227,255':'155,107,255'});
+    (function tick(){
+      x.clearRect(0,0,W,H);
+      P.forEach(function(p){p.y-=p.v;if(p.y<0){p.y=H;p.x=Math.random()*W}
+        x.beginPath();x.arc(p.x,p.y,p.r,0,6.283);x.fillStyle='rgba('+p.h+',.55)';x.fill()});
+      raf=requestAnimationFrame(tick);
+    })();
+  }
+  var b=document.getElementById('burger'),m=document.getElementById('menu');
+  b.addEventListener('click',function(){var o=m.classList.toggle('open');b.setAttribute('aria-expanded',o)});
+  m.addEventListener('click',function(e){if(e.target.tagName==='A'){m.classList.remove('open');b.setAttribute('aria-expanded','false')}});
+  document.getElementById('replay').addEventListener('click',function(){try{localStorage.removeItem('nx_intro')}catch(e){}location.reload()});
+
+  // simulated smart-home demo
+  var L=document.getElementById('light'),F=document.getElementById('fan'),R=document.getElementById('room'),
+      T=document.getElementById('temp'),PW=document.getElementById('pw'),FV=document.getElementById('fanv'),
+      names=['Off','Low','Medium','High'],temp=27;
+  function upd(){
+    var on=L.getAttribute('aria-checked')==='true',f=+F.value;
+    R.classList.toggle('lit',on);R.textContent=on?'Light is on':'Light is off';
+    FV.textContent=names[f];
+    PW.textContent=Math.round((on?12:0)+f*18+(f||on?Math.random()*2:0))+' W';
+    T.textContent=temp.toFixed(1)+' °C';
+  }
+  L.addEventListener('click',function(){L.setAttribute('aria-checked',L.getAttribute('aria-checked')!=='true');upd()});
+  F.addEventListener('input',upd);
+  setInterval(function(){temp+=(27-F.value*1.2-temp)*.15+(Math.random()-.5)*.1;upd()},2000);
+  upd();
+})();
+</script>
+</body>
+</html>

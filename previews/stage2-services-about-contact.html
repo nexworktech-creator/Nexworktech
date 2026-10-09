@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Nexwork Tech | Services, About and Contact</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Nexwork Tech service pages, portfolio, about and contact.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050A18;--bg2:#0A1330;--ink:#E6ECFF;--mute:#8E9BC4;--blue:#2F6BFF;--cyan:#22E3FF;--violet:#9B6BFF;--line:rgba(120,160,255,.18);--glass:rgba(16,28,62,.55);--bad:#ff8a9b;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:radial-gradient(50rem 26rem at 90% 0,rgba(47,107,255,.2),transparent 60%),radial-gradient(36rem 24rem at 0 30%,rgba(155,107,255,.12),transparent 60%),var(--bg);color:var(--ink);font:400 1rem/1.6 "IBM Plex Sans",system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:Sora,system-ui,sans-serif;line-height:1.15;margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1080px,100% - 2.5rem);margin-inline:auto}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;backdrop-filter:blur(14px);background:rgba(5,10,24,.75);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font:800 1.15rem Sora,sans-serif;text-decoration:none;letter-spacing:.06em}
+.brand b{color:var(--cyan)}.brand i{font-style:normal;color:var(--violet);font-size:.7em;margin-left:.35em;letter-spacing:.3em}
+nav ul{display:flex;gap:1.5rem;list-style:none;margin:0;padding:0}
+nav a{text-decoration:none;color:var(--mute)}nav a:hover,nav a[aria-current=page]{color:var(--ink)}
+nav a[aria-current=page]{border-bottom:2px solid var(--cyan);padding-bottom:4px}
+.burger{display:none;background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:.45rem .7rem;font:inherit;cursor:pointer}
+@media(max-width:760px){.burger{display:block}nav{position:absolute;top:64px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--line);display:none}nav.open{display:block}nav ul{flex-direction:column;gap:0;padding:.5rem 1.25rem 1rem}nav li a{display:block;padding:.7rem 0}}
+main{padding:3rem 0 4rem;min-height:70vh}
+h1{font-size:clamp(2rem,4.6vw,3.2rem);font-weight:800;margin-bottom:.8rem}
+h2{font-size:clamp(1.35rem,2.6vw,1.8rem);margin:2.6rem 0 1rem}
+.lead{color:var(--mute);max-width:40rem;margin:0 0 1.6rem;font-size:1.05rem}
+.crumb{color:var(--mute);font-size:.9rem;margin-bottom:1rem}.crumb a{color:var(--cyan)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.card{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:1.3rem;backdrop-filter:blur(10px)}
+.card h3{font-size:1.05rem;margin-bottom:.4rem}.card p{margin:0;color:var(--mute);font-size:.94rem}
+a.card{display:block;text-decoration:none;transition:border-color .2s}a.card:hover{border-color:var(--cyan)}
+.btns{display:flex;flex-wrap:wrap;gap:.8rem;margin:1.4rem 0}
+.btn{display:inline-block;text-decoration:none;padding:.75rem 1.25rem;border-radius:10px;font:500 1rem "IBM Plex Sans",sans-serif;border:1px solid var(--line);background:var(--glass);color:var(--ink);cursor:pointer}
+.btn:hover{border-color:var(--cyan)}.btn.p{background:linear-gradient(120deg,var(--blue),var(--violet));border-color:transparent;color:#fff}
+.btn[aria-disabled=true]{opacity:.5;cursor:not-allowed}
+.feat{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.7rem}
+.feat li{padding:.8rem 1rem;border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:8px;background:var(--glass)}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--glass);padding:1rem}
+.scroll svg{display:block;min-width:520px;width:100%;height:auto}
+.scroll rect{fill:rgba(16,28,62,.9);stroke:var(--cyan);stroke-width:1.2}
+.scroll text{fill:var(--ink);font:500 13px "IBM Plex Sans",sans-serif;text-anchor:middle}
+.scroll .ar{stroke:var(--violet);stroke-width:2;fill:none}
+.badge{display:inline-block;border:1px solid var(--violet);color:#cdb8ff;border-radius:999px;padding:.15rem .7rem;font-size:.82rem;margin-bottom:.6rem}
+.ph{height:120px;border-radius:10px;border:1px dashed var(--line);display:grid;place-items:center;color:var(--mute);font-size:.88rem;margin-bottom:.9rem;background:repeating-linear-gradient(135deg,transparent 0 10px,rgba(120,160,255,.06) 10px 20px)}
+.steps{counter-reset:s;display:grid;gap:.8rem;padding:0;list-style:none}
+.steps li{counter-increment:s;padding:1rem 1rem 1rem 3.2rem;position:relative;border:1px solid var(--line);border-radius:12px;background:var(--glass)}
+.steps li::before{content:counter(s);position:absolute;left:1rem;top:.9rem;width:1.7rem;height:1.7rem;border-radius:50%;background:var(--blue);display:grid;place-items:center;font:700 .85rem Sora,sans-serif}
+form{display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:760px}
+.f{display:flex;flex-direction:column;gap:.3rem}.f.w{grid-column:1/-1}
+label{font-size:.92rem;color:var(--mute)}
+input,select,textarea{font:inherit;color:var(--ink);background:#0b1636;border:1px solid var(--line);border-radius:8px;padding:.65rem .8rem;width:100%}
+.err{color:var(--bad);font-size:.85rem;min-height:1em}
+.hp{position:absolute;left:-9999px;height:0;overflow:hidden}
+.result{grid-column:1/-1;padding:1rem;border:1px solid var(--cyan);border-radius:10px;background:rgba(34,227,255,.08)}
+@media(max-width:640px){form{grid-template-columns:1fr}}
+footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--mute);font-size:.92rem}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#/" aria-label="Nexwork Tech home"><b>NEX</b>WORK<i>TECH</i></a>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+    <nav id="menu" aria-label="Main"><ul>
+      <li><a href="#/services" data-r="services">Services</a></li>
+      <li><a href="#/portfolio" data-r="portfolio">Portfolio</a></li>
+      <li><a href="#/about" data-r="about">About</a></li>
+      <li><a href="#/contact" data-r="contact">Contact</a></li>
+    </ul></nav>
+  </div>
+</header>
+<main class="wrap" id="app" tabindex="-1"></main>
+<footer><div class="wrap">Nexwork Tech. Connect Ideas. Build Intelligence. Automate the Future.<br>Preview build, Stage 2: forms are not connected to a backend yet.</div></footer>
+
+<script>
+var S=[
+{id:'websites',n:'Website development',b:'Fast, responsive websites that explain your business and turn visitors into inquiries.',f:['Business websites','E-commerce websites','Portfolio websites','Landing pages','Admin dashboards'],flow:['Brief','Design','Build','Launch'],d:null},
+{id:'web-apps',n:'Web applications',b:'Custom software that replaces spreadsheets and paperwork with one secure system.',f:['Custom SaaS platforms','CRM systems','Attendance management','Inventory management','School and college management','Custom business applications'],flow:['Roles','Modules','Database','Reports'],d:'SaaS Builder'},
+{id:'iot',n:'IoT solutions',b:'Sensors, gateways and dashboards that show what is happening and act on it.',f:['Smart home automation','Smart agriculture','Industrial monitoring','GPS tracking','Temperature and humidity monitoring','Energy monitoring','Sensor-based security systems'],flow:['Sensor','Gateway','Cloud','Dashboard'],d:'IoT Sensor Dashboard'},
+{id:'ai-automation',n:'AI and business automation',b:'Automations that route leads, answer customers and handle routine documents.',f:['AI customer support','Lead management automation','Email automation','Workflow automation','Document processing','Appointment scheduling','AI-powered business assistants'],flow:['Trigger','Condition','Action','Result'],d:'Business Automation Builder'},
+{id:'chatbots',n:'Chatbot development',b:'Bots on WhatsApp, Instagram and your website that answer questions and collect leads.',f:['WhatsApp chatbot','Instagram chatbot','Website live chat','Lead collection bot','FAQ chatbot','AI-powered customer support'],flow:['Message','Flow','Reply','Lead saved'],d:'WhatsApp Chatbot Builder'},
+{id:'cloud',n:'Cloud and hosting',b:'Hosting, deployment and monitoring so your site and apps stay online.',f:['Website hosting','Cloud application hosting','Domain and deployment assistance','Server monitoring','Backups and uptime monitoring','Client hosting dashboard'],flow:['Code','Deploy','Monitor','Back up'],d:'Cloud Hosting Dashboard'},
+{id:'robotics',n:'Robotics and Arduino',b:'Working prototypes on Arduino and ESP32 boards, with remote monitoring and control.',f:['Arduino projects','ESP32 projects','Sensor integration','Robotics prototypes','Smart devices','Remote monitoring and control'],flow:['Board','Sensors','Code','Control'],d:'Arduino and ESP32 Web Lab'},
+{id:'training',n:'Student training',b:'Hands-on courses where students build real projects and earn a verifiable certificate.',f:['Practical IoT courses','Arduino training','ESP32 training','IoT project development','Web development training','AI automation projects','Completion certificates'],flow:['Enroll','Learn','Submit project','Certificate'],d:null}];
+var P=[['Smart home controller','IoT'],['Attendance management system','Web app'],['Lead-capture chatbot','Chatbot'],['Greenhouse monitor','IoT'],['Business website','Website'],['Hosting dashboard','Cloud']];
+var app=document.getElementById('app');
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function svg(a){var w=a.length*150+20,o='<svg viewBox="0 0 '+w+' 90" role="img" aria-label="Flow: '+esc(a.join(', then '))+'">';
+ a.forEach(function(t,i){var x=10+i*150;o+='<rect x="'+x+'" y="22" width="110" height="44" rx="10"/><text x="'+(x+55)+'" y="49">'+esc(t)+'</text>';
+ if(i<a.length-1)o+='<path class="ar" d="M'+(x+112)+' 44h26m-7-6l7 6-7 6"/>'});return o+'</svg>'}
+function ph(t){return '<div class="ph">'+t+'</div>'}
+var V={
+home:function(){return '<h1>Technology That Connects. Intelligence That Automates.</h1><p class="lead">Eight service areas, each with its own page. Pick one to see what is included, how it works and how to request it.</p>'+grid()+'<div class="btns"><a class="btn p" href="#/contact">Build Your Solution</a><a class="btn" href="#/portfolio">See our work</a></div>'},
+services:function(){return '<h1>Services</h1><p class="lead">From a first website to a connected device fleet.</p>'+grid()},
+service:function(s){return '<p class="crumb"><a href="#/services">Services</a> / '+esc(s.n)+'</p><h1>'+esc(s.n)+'</h1><p class="lead">'+esc(s.b)+'</p><div class="btns"><a class="btn p" href="#/contact?service='+s.id+'">Request this service</a>'+
+ (s.d?'<span class="btn" aria-disabled="true" role="link">Try the '+esc(s.d)+' demo (arrives in Stage 3)</span>':'<span class="btn" aria-disabled="true" role="link">No live demo for this service</span>')+'</div>'+
+ '<h2>What is included</h2><ul class="feat">'+s.f.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>'+
+ '<h2>How it works</h2><div class="scroll">'+svg(s.flow)+'</div>'+
+ '<h2>Pricing</h2><div class="card"><span class="badge">Placeholder</span><p>Plans and prices are set by the admin in a later stage. Until then, request a quotation and we will reply with an estimate for your project.</p></div>'},
+portfolio:function(){return '<h1>Portfolio</h1><p class="lead">These cards are labeled placeholders. The admin panel will replace them with real projects, photos and results.</p><div class="grid">'+P.map(function(p){return '<div class="card">'+ph('Project photo placeholder')+'<span class="badge">Sample entry</span><h3>'+esc(p[0])+'</h3><p>'+esc(p[1])+'. Description, client and outcome to be added.</p></div>'}).join('')+'</div>'},
+about:function(){return '<h1>About Nexwork Tech</h1><p class="lead">We build connected products: the device, the software behind it, and the people who learn to run it.</p>'+
+ '<div class="grid"><div class="card"><h3>Mission</h3><p>Make IoT, automation and AI practical for businesses and students.</p></div><div class="card"><h3>Vision</h3><p>Small teams running smart, connected operations without large budgets.</p></div></div>'+
+ '<h2>How we work</h2><ol class="steps"><li><strong>Discover.</strong> We collect your goals, devices and constraints.</li><li><strong>Specify.</strong> You get a written scope and a demo preview.</li><li><strong>Build.</strong> We deliver in small stages you can test.</li><li><strong>Launch and support.</strong> Deployment, monitoring and training.</li></ol>'+
+ '<h2>Team</h2><div class="grid">'+['Founder','Team member','Team member'].map(function(r){return '<div class="card">'+ph('Photo placeholder')+'<span class="badge">Placeholder</span><h3>Name to be added</h3><p>'+r+'. Biography and social links are added by the admin.</p></div>'}).join('')+'</div>'+
+ '<h2>Milestones</h2><div class="card"><span class="badge">Placeholder</span><p>Real company milestones will be listed here once the admin adds them.</p></div>'},
+contact:function(q){var o=S.map(function(s){return '<option value="'+s.id+'"'+(q===s.id?' selected':'')+'>'+esc(s.n)+'</option>'}).join('');
+ return '<h1>Contact</h1><p class="lead">Tell us what you need. Phone, email and address will be added by the admin.</p><form id="f" novalidate>'+
+ fld('name','Full name')+fld('org','Business or organization (optional)',0)+fld('phone','Phone number','tel')+fld('wa','WhatsApp number (optional)','tel',0)+fld('email','Email','email')+fld('city','City')+
+ '<div class="f"><label for="svc">Interested service</label><select id="svc" name="svc">'+o+'</select></div>'+
+ '<div class="f"><label for="bud">Budget range</label><select id="bud"><option>Not sure yet</option><option>Under 25,000</option><option>25,000 to 100,000</option><option>Above 100,000</option></select></div>'+
+ '<div class="f"><label for="cm">Preferred contact method</label><select id="cm"><option>Phone call</option><option>WhatsApp</option><option>Email</option></select></div><div></div>'+
+ '<div class="f w"><label for="desc">Project description</label><textarea id="desc" rows="4"></textarea><span class="err" data-e="desc"></span></div>'+
+ '<div class="hp" aria-hidden="true"><label>Leave empty<input id="hp" tabindex="-1" autocomplete="off"></label></div>'+
+ '<div class="f w"><label><input type="checkbox" id="ok" style="width:auto"> I agree to be contacted about this inquiry.</label><span class="err" data-e="ok"></span></div>'+
+ '<div class="f w"><button class="btn p" type="submit">Check my inquiry</button></div><div id="res" class="f w" role="status"></div></form>'}
+};
+function fld(id,l,t,req){return '<div class="f"><label for="'+id+'">'+l+'</label><input id="'+id+'" type="'+(t&&t!==0?t:'text')+'"'+(t==='tel'?' inputmode="tel"':'')+'><span class="err" data-e="'+id+'"></span></div>'}
+function grid(){return '<div class="grid">'+S.map(function(s){return '<a class="card" href="#/services/'+s.id+'"><h3>'+esc(s.n)+'</h3><p>'+esc(s.b)+'</p></a>'}).join('')+'</div>'}
+function bind(){var f=document.getElementById('f');if(!f)return;
+ f.addEventListener('submit',function(e){e.preventDefault();var er={},v=function(i){return f.querySelector('#'+i).value.trim()};
+  if(v('name').length<2)er.name='Enter your full name.';
+  if(!/^\+?[0-9 ()-]{7,18}$/.test(v('phone'))||v('phone').replace(/\D/g,'').length<7)er.phone='Enter a valid phone number.';
+  if(v('wa')&&v('wa').replace(/\D/g,'').length<7)er.wa='Enter a valid WhatsApp number or leave it empty.';
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v('email')))er.email='Enter a valid email address.';
+  if(!v('city'))er.city='Enter your city.';
+  if(v('desc').length<10)er.desc='Describe your project in at least 10 characters.';
+  if(!f.querySelector('#ok').checked)er.ok='Consent is required so we can contact you.';
+  f.querySelectorAll('[data-e]').forEach(function(s){s.textContent=er[s.dataset.e]||''});
+  var r=document.getElementById('res');
+  if(Object.keys(er).length){r.innerHTML='<div class="result" style="border-color:var(--bad)">Fix the highlighted fields and try again.</div>';return}
+  if(document.getElementById('hp').value){return}
+  r.innerHTML='<div class="result"><strong>Your details look valid, but nothing was sent.</strong> This preview has no backend. In Stage 4 the form will save to a database and show an inquiry ID only after the server confirms.</div>'})}
+function route(){var h=location.hash.replace(/^#\/?/,''),qs=h.split('?'),p=qs[0].split('/'),q=(new URLSearchParams(qs[1]||'')).get('service'),v,t='Nexwork Tech',r=p[0]||'home';
+ if(r==='services'&&p[1]){var s=S.filter(function(x){return x.id===p[1]})[0];if(s){v=V.service(s);t=s.n}else{v='<h1>Page not found</h1><p class="lead"><a href="#/services">Back to services</a></p>'}}
+ else if(V[r]){v=V[r](q);t=r[0].toUpperCase()+r.slice(1)}else{v='<h1>Page not found</h1><p class="lead"><a href="#/">Go to the home page</a></p>'}
+ app.innerHTML=v;document.title=t+' | Nexwork Tech';
+ document.querySelectorAll('nav a').forEach(function(a){a.dataset.r===r?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current')});
+ document.getElementById('menu').classList.remove('open');window.scrollTo(0,0);app.focus({preventScroll:true});bind()}
+addEventListener('hashchange',route);route();
+var b=document.getElementById('burger');b.addEventListener('click',function(){b.setAttribute('aria-expanded',document.getElementById('menu').classList.toggle('open'))});
+</script>
+</body>
+</html>

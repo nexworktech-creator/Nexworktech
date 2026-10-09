@@ -1,0 +1,205 @@
+generator client { provider = "prisma-client-js" }
+datasource db { provider = "postgresql"; url = env("DATABASE_URL") }
+
+enum Role { SUPER_ADMIN ADMIN STAFF CUSTOMER STUDENT }
+enum InquiryStatus { NEW CONTACTED QUALIFIED WON LOST }
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  name         String
+  role         Role      @default(CUSTOMER)
+  active       Boolean   @default(true)
+  sessions     Session[]
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  assigned     Inquiry[] @relation("assignee")
+  notes        InquiryNote[]
+  audits       AuditLog[]
+  student      Student?
+}
+model Service {
+  id        String    @id @default(cuid())
+  slug      String    @unique
+  name      String
+  summary   String
+  published Boolean   @default(true)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  inquiries Inquiry[]
+}
+model Demo {
+  id       String        @id @default(cuid())
+  slug     String        @unique
+  name     String
+  enabled  Boolean       @default(true)
+  sessions DemoSession[]
+}
+model DemoSession {
+  id        String   @id @default(cuid())
+  demoId    String
+  demo      Demo     @relation(fields: [demoId], references: [id])
+  createdAt DateTime @default(now())
+  @@index([demoId, createdAt])
+}
+model Inquiry {
+  id           String        @id @default(cuid())
+  publicId     String        @unique            // e.g. NX-2026-AB12CD
+  fullName     String
+  organization String?
+  phone        String
+  whatsapp     String?
+  email        String
+  city         String
+  serviceId    String?
+  service      Service?      @relation(fields: [serviceId], references: [id])
+  features     String[]
+  budget       String?
+  description  String
+  contactVia   String
+  consent      Boolean
+  config       Json?                             // Build Your Own Solution wizard output
+  status       InquiryStatus @default(NEW)
+  assigneeId   String?
+  assignee     User?         @relation("assignee", fields: [assigneeId], references: [id])
+  notes        InquiryNote[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  @@index([status, createdAt])
+  @@index([serviceId])
+  @@index([email])
+}
+model InquiryNote {
+  id        String   @id @default(cuid())
+  inquiryId String
+  inquiry   Inquiry  @relation(fields: [inquiryId], references: [id], onDelete: Cascade)
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id])
+  body      String
+  createdAt DateTime @default(now())
+}
+model AuditLog {
+  id        String   @id @default(cuid())
+  actorId   String?
+  actor     User?    @relation(fields: [actorId], references: [id])
+  action    String
+  target    String?
+  createdAt DateTime @default(now())
+  @@index([createdAt])
+}
+
+enum EnrollStatus { ACTIVE COMPLETED DROPPED }
+enum SubmissionStatus { SUBMITTED APPROVED REJECTED }
+enum CertStatus { PENDING ISSUED REVOKED }
+
+model Student {
+  id          String       @id @default(cuid())
+  regNo       String       @unique           // verified registration number
+  fullName    String
+  email       String       @unique
+  userId      String?      @unique           // linked when the student gets a login (Stage 7)
+  user        User?        @relation(fields: [userId], references: [id])
+  enrollments Enrollment[]
+  submissions Submission[]
+  createdAt   DateTime     @default(now())
+}
+model Course {
+  id                  String       @id @default(cuid())
+  slug                String       @unique
+  title               String
+  published           Boolean      @default(true)
+  requiredAssignments Int          @default(3)  // completion rule for certificates
+  enrollments         Enrollment[]
+  assignments         Assignment[]
+}
+model Enrollment {
+  id          String       @id @default(cuid())
+  studentId   String
+  student     Student      @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  courseId    String
+  course      Course       @relation(fields: [courseId], references: [id])
+  status      EnrollStatus @default(ACTIVE)
+  createdAt   DateTime     @default(now())
+  certificate Certificate?
+  @@unique([studentId, courseId])
+  @@index([courseId])
+}
+model Assignment {
+  id          String       @id @default(cuid())
+  courseId    String
+  course      Course       @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  title       String
+  submissions Submission[]
+}
+model Submission {
+  id           String           @id @default(cuid())
+  assignmentId String
+  assignment   Assignment       @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+  studentId    String
+  student      Student          @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  content      String
+  status       SubmissionStatus @default(SUBMITTED)
+  createdAt    DateTime         @default(now())
+  @@unique([assignmentId, studentId])
+}
+model Certificate {
+  id           String     @id @default(cuid())
+  certId       String     @unique            // public, random, e.g. NXC-2026-9F3A1C7B2E
+  enrollmentId String     @unique
+  enrollment   Enrollment @relation(fields: [enrollmentId], references: [id])
+  status       CertStatus @default(PENDING)
+  issuedAt     DateTime?
+  revokedAt    DateTime?
+  @@index([status])
+}
+enum RunMode { TEST PRODUCTION }
+enum RunStatus { SUCCEEDED FAILED SKIPPED }
+
+model IoTDevice {
+  id         String            @id @default(cuid())
+  name       String
+  tokenHash  String            @unique          // SHA-256 of the device token; the token itself is never stored
+  lastSeenAt DateTime?
+  createdAt  DateTime          @default(now())
+  telemetry  DeviceTelemetry[]
+}
+model DeviceTelemetry {
+  id       Int       @id @default(autoincrement())
+  deviceId String
+  device   IoTDevice @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+  metric   String
+  value    Float
+  ts       DateTime  @default(now())
+  @@index([deviceId, metric, ts])
+}
+model Workflow {
+  id         String        @id @default(cuid())
+  name       String
+  definition Json                              // validated by Definition in lib/automation/engine.ts
+  enabled    Boolean       @default(false)     // production runs need enabled = true
+  createdAt  DateTime      @default(now())
+  runs       WorkflowRun[]
+}
+model WorkflowRun {
+  id         String    @id @default(cuid())
+  workflowId String
+  workflow   Workflow  @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+  mode       RunMode
+  status     RunStatus
+  steps      Json
+  createdAt  DateTime  @default(now())
+  @@index([workflowId, createdAt])
+}
+// Still to add: Project, TeamMember, Review, IntegrationConfig (Stage 4 follow-up). Integration
+// secrets are read from environment variables in this stage; none are stored in the database.
+
+model Session {
+  id        String   @id                       // SHA-256 of the cookie token; the raw token is never stored
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  @@index([userId])
+  @@index([expiresAt])
+}
